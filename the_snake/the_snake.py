@@ -266,7 +266,7 @@ def main():
         handle_keys(snake)
         snake.update_direction()
 
-        clock.tick(SPEED // 5)
+        clock.tick(SPEED)
 
         snake.move()
 
