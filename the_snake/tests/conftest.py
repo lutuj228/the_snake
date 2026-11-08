@@ -13,7 +13,7 @@ from pygame.time import Clock
 
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
-sys.path.append(str(BASE_DIR))
+sys.path.insert(0, str(BASE_DIR))
 
 # Скрытие игрового окна Pygame во время тестирования.
 os.environ['SDL_VIDEODRIVER'] = 'dummy'
