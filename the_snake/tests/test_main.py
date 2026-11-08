@@ -1,3 +1,5 @@
+"""Тесты корректности запуска основного игрового цикла «Змейки»."""
+
 import pytest
 
 from conftest import StopInfiniteLoop
@@ -6,6 +8,18 @@ from conftest import StopInfiniteLoop
 @pytest.mark.timeout(1, method='thread')
 @pytest.mark.usefixtures('modified_clock')
 def test_main_run_without_exceptions(_the_snake):
+    """Проверить запуск функции main без непредвиденных исключений.
+
+    Args:
+        _the_snake: Импортированный модуль игры «Змейка».
+
+    Returns:
+        None: Функция ничего не возвращает.
+
+    Raises:
+        AssertionError: Если при выполнении main возникает исключение,
+            отличное от StopInfiniteLoop.
+    """
     try:
         _the_snake.main()
     except StopInfiniteLoop:
