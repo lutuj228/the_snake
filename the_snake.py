@@ -116,38 +116,20 @@ class Snake(GameObject):
         head_x = self.get_head_position()[0]
         head_y = self.get_head_position()[1]
 
-        # Проверка выхода за границы:
-        if head_x < 0:
-            head_x = SCREEN_WIDTH - GRID_SIZE
+        new_x = head_x + self.direction[0] * GRID_SIZE
+        new_y = head_y + self.direction[1] * GRID_SIZE
 
-        elif head_x >= SCREEN_WIDTH:
-            head_x = 0
+        if new_x < 0:
+            new_x = SCREEN_WIDTH - GRID_SIZE
+        elif new_x >= SCREEN_WIDTH:
+            new_x = 0
 
-        if head_y < 0:
-            head_y = SCREEN_HEIGHT - GRID_SIZE
+        if new_y < 0:
+            new_y = SCREEN_HEIGHT - GRID_SIZE
+        elif new_y >= SCREEN_HEIGHT:
+            new_y = 0
 
-        elif head_y >= SCREEN_HEIGHT:
-            head_y = 0
-
-        if self.direction == RIGHT:
-            self.positions.insert(
-                0, (head_x + RIGHT[0] * GRID_SIZE, head_y)
-            )
-
-        elif self.direction == LEFT:
-            self.positions.insert(
-                0, (head_x + LEFT[0] * GRID_SIZE, head_y)
-            )
-
-        elif self.direction == UP:
-            self.positions.insert(
-                0, (head_x, head_y + UP[1] * GRID_SIZE)
-            )
-
-        elif self.direction == DOWN:
-            self.positions.insert(
-                0, (head_x, head_y + DOWN[1] * GRID_SIZE)
-            )
+        self.positions.insert(0, (new_x, new_y))
 
     def draw(self):
         """Отрисовывает змейку и удаляет предыдущий хвост."""
